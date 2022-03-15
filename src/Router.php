@@ -16,47 +16,27 @@ class Router
   public function routeReq(){
 
     try {
-      //on crée une variable $url
-      $url = '';
 
       //on va determiner le controleur en
       //fonction de la valeur de cette variable
-      if (isset($_GET['url'])) {
+      if (isset($_GET['action']) && isset($_GET['module']) ) {
         //on décompose l'url et on lui applique un filtre
-        $url = explode('/', filter_var($_GET['url'], FILTER_SANITIZE_URL));
-
-        //on recupere le premier parametre de url
-        //on le met tout en miniscule
-        //on met sa premiere lettre en majuscule
-        $controller = ucfirst(strtolower($url[0]));
-
-        $controllerClass = "Controller".$controller;
-
-        //on retrouve le chemin du controleur voulu
-        $controllerFile = "controllers/".$controllerClass.".php";
-
-        //on check si le fichier du controleur existe
-        if (file_exists($controllerFile)) {
-          //on lance la classe en question
-          //avec tous les parametres url
-          //pour respecter l'encapsulation
-          $this->ctrl = new $controllerClass($url);
-        }
-        else {
-          throw new \Exception("Page introuvable", 1);
-
-        }
+        $action = filter_var($_GET['action'], FILTER_SANITIZE_URL);
+        $module = ucfirst(filter_var($_GET['module'], FILTER_SANITIZE_URL));
+        $controller = "App\\Controllers\\Controller".$module;
+        $this->_ctrl = (new $controller);
+        $this->_ctrl->$action();
       }
 
       else {
      
-        $this->ctrl = new ControllerAccueil($url);
+        $this->ctrl = (new ControllerAccueil())->accueil();
       }
 
     } catch (\Exception $e) {
       $errorMsg = $e->getMessage();
-      $this->_view = new View('Error');
-      $this->_view->generate(array('errorMsg' => $errorMsg));
+
+      (new ControllerAccueil())->error($errorMsg);
     }
   }
 }
