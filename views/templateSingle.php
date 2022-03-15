@@ -34,9 +34,9 @@
 			<div class="menu-nav-icon" data-nav-menu="#main-menu"><i class="ion-navicon"></i></div>
 
 			<ul class="main-menu visible-on-click" id="main-menu">
-				<li><a href="#">Home</a></li>
-				<li><a href="#">Categories</a></li>
-				<li><a href="#">Features</a></li>
+				<li><a href="#">Accueil</a></li>
+				<li><a href="#">Catégories</a></li>
+				<li><a href="#">Contact</a></li>
 				<li><a href="post&create">Créer un article</a></li>
 			</ul><!-- main-menu -->
 
@@ -62,8 +62,8 @@
 					<div class="footer-section">
 
 						<a class="logo" href="#"><img src="public/images/logo.png" alt="Logo Image"></a>
-						<p class="copyright">Bona @ 2017. All rights reserved.</p>
-						<p class="copyright">Designed by <a href="https://colorlib.com" target="_blank">Colorlib</a></p>
+						<p class="copyright">Maxime Schubas 2022. All rights reserved.</p>
+						<p class="copyright">Mes musiques <a href="https://soundcloud.com/maxime-schubas" target="_blank"> Soundcloud</a></p>
 						<ul class="icons">
 							<li><a href="#"><i class="ion-social-facebook-outline"></i></a></li>
 							<li><a href="#"><i class="ion-social-twitter-outline"></i></a></li>
@@ -77,16 +77,16 @@
 
 				<div class="col-lg-4 col-md-6">
 						<div class="footer-section">
-						<h4 class="title"><b>CATAGORIES</b></h4>
+						<h4 class="title"><b>CATEGORIES</b></h4>
 						<ul>
-							<li><a href="#">BEAUTY</a></li>
-							<li><a href="#">HEALTH</a></li>
-							<li><a href="#">MUSIC</a></li>
+							<li><a href="#">ESPACE</a></li>
+							<li><a href="#">SANTE</a></li>
+							<li><a href="#">MUSIQUE</a></li>
 						</ul>
 						<ul>
 							<li><a href="#">SPORT</a></li>
 							<li><a href="#">DESIGN</a></li>
-							<li><a href="#">TRAVEL</a></li>
+							<li><a href="#">VOYAGE</a></li>
 						</ul>
 					</div><!-- footer-section -->
 				</div><!-- col-lg-4 col-md-6 -->

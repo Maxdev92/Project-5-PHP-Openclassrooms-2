@@ -140,7 +140,7 @@ header .src-area .src-btn{ position: absolute; top: 0; bottom: 0; left: 0; width
 --------------------------------- */
 
 .slider{ height: 600px; width: 100%; background-size: cover; position: relative; z-index: 1;
-	background-image: url(../../images/slider-1-1600x900.jpg); color: #fff; }
+	background-image: url(../../images/slider1.jpg); color: #fff; }
 
 .slider:after{ content:'';  position: absolute; top: 0; bottom: 0; left: 0; right: 0; z-index: -1; 
 	background: rgba(0,0,0,.3); }

@@ -11,9 +11,9 @@ class View
   //titre de la page
   private $_t;
 
-  function __construct($action)
+  function __construct($module, $action)
   {
-    $this->_file = 'views/view'.$action.'.php';
+    $this->_file = "views/$module/view$action.php";
   }
 
   //crée une fonction qui va

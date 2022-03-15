@@ -1,16 +1,17 @@
 <?php
 namespace App\Models;
 
+
 /**
  *
  */
-class Article
+class Article extends Model
 {
 
   private $_id;
   private $_title;
   private $_content;
-  private $_date;
+  private $_creation_date;
 
   public function __construct(array $data){
     $this->hydrate($data);
@@ -52,7 +53,7 @@ class Article
 
   public function setDate($date)
   {
-      $this->_date = $date;
+      $this->_creation_date = $date;
 
   }
 
@@ -72,9 +73,9 @@ class Article
     return $this->_content;
   }
 
-  public function date()
+  public function creation_date()
   {
-    return $this->_date;
+    return $this->_creation_date;
   }
 
 

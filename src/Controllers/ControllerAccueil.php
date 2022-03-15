@@ -7,27 +7,22 @@ use App\Service\View;
 /**
  *
  */
-class ControllerAccueil
-{
+class ControllerAccueil extends ControllerAbstract
+{ 
   private $_articleManager;
   private $_view;
 
-  public function __construct()
-  {
-    if (isset($url) && count($url) > 1) {
-      throw new \Exception("Page introuvable", 1);
 
-    }
-    else {
-      $this->articles();
-    }
-  }
-
-  private function articles(){
+  public function accueil(){
     $this->_articleManager = new ArticleManager();
     $articles = $this->_articleManager->getArticles();
-    $this->_view = new View('Accueil');
-    $this->_view->generate(array('articles' => $articles));
+    $this->_view = new View('accueil', 'Accueil');
+    $this->_view->generate(array('article' => $articles));
+  }
+
+  public function error($errorMsg){
+    $this->_view = new View('accueil','Error');
+    $this->_view->generate(array('errorMsg' => $errorMsg));
   }
 }
 
