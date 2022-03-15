@@ -11,6 +11,12 @@ class ControllerPost extends ControllerAbstract
   private $_articleManager;
   private $_view;
 
+  public function listPost(){
+    $this->_articleManager = new ArticleManager;
+    $articles = $this->_articleManager->getArticles();
+    $this->_view = new View('post', 'listPost');
+    $this->_view->generatePost(array('articles' => $articles));
+  }
   //fonction pour afficher un article
   public function article()
   {

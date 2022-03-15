@@ -8,7 +8,7 @@
     <div class="row">
 
       <?php
-      foreach ($article as $article):
+      foreach ($articles as $article):
        ?>
 
 
