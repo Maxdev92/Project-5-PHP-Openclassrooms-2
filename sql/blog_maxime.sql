@@ -32,6 +32,24 @@ CREATE TABLE `article` (
 
 insert into `article` (title, chapo, content, id_author, creation_date, modified_at)
 values  
+
+
+        ('Le prix des smartphones', 
+        'Plus on avance, plus ils sont chers ?', 
+        'De nos jours un smartphone coute cher, pourtant avant ils coutaient moins cher. Pour comprendre ce qui se joue en ce moment, il est important de se représenter, presque visuellement, l’intérieur d’un téléphone mobile. Un smartphone, c’est comme un puzzle : des dizaines, voire des centaines de pièces, des composants imbriqués.
+        Certains coûtent beaucoup plus cher que d’autres : l’écran, la batterie, la mémoire. Ces trois-là ne sont pas concernés – pour l’instant – par la pénurie de composants, mais le moindre ressort, la moindre résistance est tout aussi indispensable. Sans chacune de ces pièces, pas de smartphone. Or, ce sont ces éléments qui arrivent, en ce moment, en rupture de stock.  '
+        ,1, 
+        '2022-02-01 20:34:00',
+        '2022-02-01 20:02:04'),
+
+        ('Le prix des smartphones', 
+        'Plus on avance, plus ils sont chers ?', 
+        'De nos jours un smartphone coute cher, pourtant avant ils coutaient moins cher. Pour comprendre ce qui se joue en ce moment, il est important de se représenter, presque visuellement, l’intérieur d’un téléphone mobile. Un smartphone, c’est comme un puzzle : des dizaines, voire des centaines de pièces, des composants imbriqués.
+        Certains coûtent beaucoup plus cher que d’autres : l’écran, la batterie, la mémoire. Ces trois-là ne sont pas concernés – pour l’instant – par la pénurie de composants, mais le moindre ressort, la moindre résistance est tout aussi indispensable. Sans chacune de ces pièces, pas de smartphone. Or, ce sont ces éléments qui arrivent, en ce moment, en rupture de stock.  '
+        ,1, 
+        '2022-02-01 20:34:00',
+        '2022-02-01 20:02:04'),
+
         ('Le prix des smartphones', 
         'Plus on avance, plus ils sont chers ?', 
         'De nos jours un smartphone coute cher, pourtant avant ils coutaient moins cher. Pour comprendre ce qui se joue en ce moment, il est important de se représenter, presque visuellement, l’intérieur d’un téléphone mobile. Un smartphone, c’est comme un puzzle : des dizaines, voire des centaines de pièces, des composants imbriqués.
@@ -39,6 +57,8 @@ values
         ,1, 
         '2022-02-01 20:34:00',
         '2022-02-01 20:02:04');
+
+
 
 
 CREATE TABLE `comment` (
