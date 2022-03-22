@@ -1,7 +1,7 @@
 <?php
 namespace App\Models;
 
-use App\DbConnect;
+use App\Service\DbConnect;
 
 abstract class Model
 {

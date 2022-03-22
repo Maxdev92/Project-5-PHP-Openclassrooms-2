@@ -18,7 +18,7 @@ class View
 
   //crée une fonction qui va
   //générer et afficher la vue de tous les articles
-  public function generate($data){
+  public function generate($data = null){
     //définir le contenu à envoyer
     $content = $this->generateFile($this->_file, $data);
 
@@ -28,7 +28,7 @@ class View
   }
 
   //générer la vue d'un article
-  public function generatePost($data){
+  public function generatePost(?array $data){
     //définir le contenu à envoyer
     $content = $this->generateFile($this->_file, $data);
 
@@ -49,9 +49,10 @@ class View
   }
 
 
-  private function generateFile($file, $data){
+  private function generateFile($file, $data = null){
     if (file_exists($file)) {
-      extract($data);
+      if(!empty($data))
+        extract($data);
 
       //commencer la temporisation
       ob_start();

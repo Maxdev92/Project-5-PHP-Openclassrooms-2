@@ -46,7 +46,7 @@
 			<div class="menu-nav-icon" data-nav-menu="#main-menu"><i class="ion-navicon"></i></div>
 
 			<ul class="main-menu visible-on-click" id="main-menu">
-				<li><a href="http://localhost/blog-mvc-master/">Accueil</a></li>
+				<li><a href="/">Accueil</a></li>
 				<li><a href="viewListPost.php">Blog</a></li>
 				<li><a href="#">Contact</a></li>
 				<li><a href="login.php">Se connecter</a></li>
@@ -61,7 +61,10 @@
 
 		</div><!-- conatiner -->
 	</header>
-
+	<?php if(isset($_SESSION["error"])): ?>
+		<p class="alert alert-danger"><?= $_SESSION["error"] ?></p>
+		
+		<?php unset($_SESSION["error"]); endif; ?>
 
   <?= $content ?>
 

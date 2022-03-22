@@ -2,6 +2,7 @@
 
 namespace App\Models;
 use App\Models\Comment;
+use App\Service\DbConnect;
 
 class CommentManager extends Model 
 
@@ -21,7 +22,7 @@ class CommentManager extends Model
       
     public function changeComment($postId, $author, $comment, $commentId){
 
-        $db = $this->getBdd();
+        $db = $this->DbConnect::getInstance();
         $comment = $db->prepare("UPDATE comments SET author = ?, comment = ?, comment_date = NOW() WHERE id = ? AND post_id = ?");
   
         $affectedComment = $comment->execute(array($author, $comment, $commentId, $postId));
