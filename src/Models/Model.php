@@ -1,7 +1,7 @@
 <?php
 namespace App\Models;
 
-use App\DbConnect;
+use App\Service\DbConnect;
 
 abstract class Model
 {
@@ -78,5 +78,14 @@ abstract class Model
 
     $req->closeCursor();
   }
+
+  protected function registerBdd($username, $email, $password)
+  {
+    $req = self::$_bdd->prepare("INSERT INTO users(username, email, password) values('".$username."','".$email."','".$password."')");  
+    $req->execute();
+    $req->closeCursor();
+  }
+
+
 
 }

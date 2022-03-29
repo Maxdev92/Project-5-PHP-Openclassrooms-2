@@ -1,5 +1,5 @@
 
-
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 	<div class="slider"></div><!-- slider -->
 
 <section class="blog-area section">
@@ -40,7 +40,7 @@
 
     </div><!-- row -->
 
-    <a class="load-more-btn" href="#"><b>LOAD MORE</b></a>
+    <a class="load-more-btn" href="?module=post&action=createPost"><b>CRÉER UN ARTICLE</b></a>
 
   </div><!-- container -->
 </section><!-- section -->
