@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Models;
+namespace App\Manager;
 use App\Models\Comment;
 
-class CommentManager extends Model 
+class CommentManager extends AbstractMAnager
 
 {
    
@@ -29,6 +29,26 @@ class CommentManager extends Model
         return $affectedComment;
   
     } 
+    protected function getCom($table, $obj, $id)
+  {
+    $var = [];
+    $req = self::$_bdd->prepare("SELECT id, author, content, DATE_FORMAT(date, '%d/%m/%Y à %Hh%imin%ss') AS date FROM " .$table. " WHERE id = ?");
+    $req->execute(array($id));
+    while ($data = $req->fetch(\PDO::FETCH_ASSOC)) {
+      $var[] = new $obj($data);
+    }
+
+    return $var;
+    $req->closeCursor();
+  }
+  
+  protected function createCom($table, $obj)
+  {
+    $req = self::$_bdd->prepare("INSERT INTO ".$table." (post_id, content, author, creation_date) VALUES (?, ?, ?, ?)");
+    $req->execute(array($_POST['author'], $_POST['content'], date("d.m.Y")));
+
+    $req->closeCursor();
+  }
    
 }
 

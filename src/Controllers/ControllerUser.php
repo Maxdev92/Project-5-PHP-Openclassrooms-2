@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use App\Service\View;
-use app\Models\RegisterManager;
+use app\Manager\RegisterManager;
 
 class ControllerUser extends ControllerAbstract{
 
@@ -63,7 +63,7 @@ class ControllerUser extends ControllerAbstract{
       && isset($_POST['username']) && !empty($_POST['username'])
       && isset($_POST['email']) && !empty($_POST['email'])
       && isset($_POST['password']) && !empty($_POST['password']) ){
-        $this->registerManager->sendRegister('username', 'email', 'password');
+        $this->registerManager->register('username', 'email', 'password');
       }
       else{
         if( isset($_POST['username']) && empty($_POST['username'])

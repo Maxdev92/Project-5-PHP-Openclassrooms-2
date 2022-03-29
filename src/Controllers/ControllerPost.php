@@ -1,7 +1,7 @@
 <?php
 namespace App\Controllers;
 
-use App\Models\ArticleManager;
+use App\Manager\ArticleManager;
 use App\Service\View;
 use Exception;
 
