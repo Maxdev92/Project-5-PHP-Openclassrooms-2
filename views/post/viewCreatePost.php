@@ -1,3 +1,4 @@
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 <div class="contact1">
   <div class="container-contact1">
     <div class="contact1-pic js-tilt" data-tilt>

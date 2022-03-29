@@ -2,7 +2,6 @@
 
 namespace App\Models;
 use App\Models\Comment;
-use App\Service\DbConnect;
 
 class CommentManager extends Model 
 

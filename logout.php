@@ -2,5 +2,5 @@
 
 	session_destroy();
  
-	header('');
+	header('http://localhost/blog-mvc-master/');
 ?>
