@@ -8,7 +8,7 @@ CREATE TABLE `user` (
                 id INT NOT NULL AUTO_INCREMENT,
                 username VARCHAR(45) NOT NULL,
                 email VARCHAR(45) NOT NULL,
-                password VARCHAR(45) NOT NULL,
+                password VARCHAR(255) NOT NULL,
                 role VARCHAR(45) NOT NULL,
                 created_at DATE NOT NULL,
                 PRIMARY KEY (id_user)
@@ -16,7 +16,7 @@ CREATE TABLE `user` (
 
 insert into `user` (username, email, password, role, created_at)
 values  
-        ('Maxime', 'maxime.schubas@gmail.com', 'MotDePasse', 'admin', '2022-01-21'),
+        ('Maxime', 'maxime.schubas@gmail.com', '$2y$10$EMbBteQPizUcKgxGScxtb.mpbzG6HH2FIDHy1VmfeyPAWi68eG5pm', 'admin', '2022-01-21'),
         ('Jean', 'jean.jean@gmail.com', 'PassWord', 'user', '2022-01-22');
 
 CREATE TABLE `article` (
