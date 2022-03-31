@@ -2,7 +2,7 @@
 
 namespace App\Manager;
 
-class RegisterManager extends AbstractMAnager
+class RegisterManager extends AbstractManager
 {
 
 

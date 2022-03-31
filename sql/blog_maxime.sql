@@ -11,7 +11,7 @@ CREATE TABLE `user` (
                 password VARCHAR(255) NOT NULL,
                 role VARCHAR(45) NOT NULL,
                 created_at DATE NOT NULL,
-                PRIMARY KEY (id_user)
+                PRIMARY KEY (id)
 );
 
 insert into `user` (username, email, password, role, created_at)

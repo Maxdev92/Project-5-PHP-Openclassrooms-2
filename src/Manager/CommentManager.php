@@ -3,7 +3,7 @@
 namespace App\Manager;
 use App\Models\Comment;
 
-class CommentManager extends AbstractMAnager
+class CommentManager extends AbstractManager
 
 {
    

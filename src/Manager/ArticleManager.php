@@ -6,7 +6,7 @@ use App\Models\Article;
 /**
  *
  */
-class ArticleManager extends AbstractMAnager
+class ArticleManager extends AbstractManager
 {
 
   //gréer la fonction qui va recuperer
@@ -26,7 +26,7 @@ class ArticleManager extends AbstractMAnager
     protected function createPost($table, $obj)
   {
     $req = self::$_bdd->prepare("INSERT INTO ".$table." (title, content, creation_date) VALUES (?, ?, ?)");
-    $req->execute(array($_POST['title'], $_POST['content'], date("d.m.Y")));
+    $req->execute(array($_POST['title'], $_POST['content'], date("Y.d.m")));
 
     $req->closeCursor();
   }

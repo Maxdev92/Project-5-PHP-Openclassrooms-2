@@ -3,7 +3,7 @@ namespace App\Manager;
 
 use App\Service\DbConnect;
 
-abstract class AbstractMAnager
+abstract class AbstractManager
 {
 
   static $_bdd;
