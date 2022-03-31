@@ -20,14 +20,12 @@ class ControllerUser extends ControllerAbstract{
       {
         session_start();
         $_SESSION['username'];
-        $this->_view = new View('accueil', 'accueil');
-        $this->_view->generate();
+    
+        $this->renderview('accueil','accueil' );
       }
       else{
         if( isset($_POST['username']) && empty($_POST['username']) 
-        ||  isset($_POST['password']) && empty($_POST['password'])
-        ||  !password_verify($_POST['password'], $hash)){
-        }
+        ||  isset($_POST['password']) && empty($_POST['password']))
           $_SESSION["error"] = "Informations manquantes ou incorrectes";
         $this->_view = new View('user', 'login');
         $this->_view->generate();
@@ -42,7 +40,11 @@ class ControllerUser extends ControllerAbstract{
       && isset($_POST['username']) && !empty($_POST['username'])
       && isset($_POST['email']) && !empty($_POST['email'])
       && isset($_POST['password']) && !empty($_POST['password']) ){
-        $this->registerManager->register('username', 'email', 'password');
+        if($this->registerManager->register('username', 'email', 'password')){
+          //message de succès et redirection vers la page de login
+        }else{
+          //messagtfe d'erreur une erreur est survenue durant l'inscription
+        }
       }
       else{
         if( isset($_POST['username']) && empty($_POST['username'])
@@ -50,8 +52,7 @@ class ControllerUser extends ControllerAbstract{
         ||  isset($_POST['password']) && empty($_POST['password'])){
           $_SESSION["error"] = "Informations manquantes ou incorrectes";
           }
-          $this->_view = new View('user', 'Register');
-          $this->_view->generate();
+          $this->renderview('user','register' );
         }
       }
  
