@@ -6,8 +6,8 @@ START TRANSACTION;
 
 CREATE TABLE `user` (
                 id INT NOT NULL AUTO_INCREMENT,
-                username VARCHAR(45) NOT NULL,
-                email VARCHAR(45) NOT NULL,
+                username VARCHAR(45) NOT NULL UNIQUE,
+                email VARCHAR(45) NOT NULL UNIQUE,
                 password VARCHAR(255) NOT NULL,
                 role VARCHAR(45) NOT NULL,
                 created_at DATE NOT NULL,

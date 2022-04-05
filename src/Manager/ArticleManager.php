@@ -12,7 +12,7 @@ class ArticleManager extends AbstractManager
   //gréer la fonction qui va recuperer
   //tous les articles dans la bdd
   public function getArticles(){
-    return $this->getAll("article", Article::class);
+    return $this->getAll('article', Article::class);
   }
 
   public function getArticle($id){

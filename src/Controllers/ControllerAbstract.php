@@ -17,4 +17,8 @@ abstract class ControllerAbstract{
     $this->_view->generate($data);
   }
 
+  public function addFlash(string $key, string $message){
+    $_SESSION[$key] = $message;
+  }
+
 }
