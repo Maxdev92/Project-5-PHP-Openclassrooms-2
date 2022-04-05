@@ -8,4 +8,17 @@ abstract class ControllerAbstract{
    (new ControllerAccueil)->error( "l'action : $action, n'existe pas");
   }
 
+  /**
+   * fonction qui rend la vue
+   * @param string $module
+   */
+  protected function renderview(string $module, string $action, ?array $data= null): void{
+    $this->_view = new View($module, $action);
+    $this->_view->generate($data);
+  }
+
+  public function addFlash(string $key, string $message){
+    $_SESSION[$key] = $message;
+  }
+
 }

@@ -5,18 +5,18 @@ use `blog_maxime`;
 START TRANSACTION;
 
 CREATE TABLE `user` (
-                id_user INT NOT NULL AUTO_INCREMENT,
-                username VARCHAR(45) NOT NULL,
-                email VARCHAR(45) NOT NULL,
-                password VARCHAR(45) NOT NULL,
+                id INT NOT NULL AUTO_INCREMENT,
+                username VARCHAR(45) NOT NULL UNIQUE,
+                email VARCHAR(45) NOT NULL UNIQUE,
+                password VARCHAR(255) NOT NULL,
                 role VARCHAR(45) NOT NULL,
                 created_at DATE NOT NULL,
-                PRIMARY KEY (id_user)
+                PRIMARY KEY (id)
 );
 
 insert into `user` (username, email, password, role, created_at)
 values  
-        ('Maxime', 'maxime.schubas@gmail.com', 'MotDePasse', 'admin', '2022-01-21'),
+        ('Maxime', 'maxime.schubas@gmail.com', '$2y$10$EMbBteQPizUcKgxGScxtb.mpbzG6HH2FIDHy1VmfeyPAWi68eG5pm', 'admin', '2022-01-21'),
         ('Jean', 'jean.jean@gmail.com', 'PassWord', 'user', '2022-01-22');
 
 CREATE TABLE `article` (
@@ -76,7 +76,7 @@ values
 
 ALTER TABLE `article` ADD CONSTRAINT id_author_fk
 FOREIGN KEY (id_author)
-REFERENCES `user` (id_user);
+REFERENCES `user` (id);
 
 ALTER TABLE `comment` ADD CONSTRAINT id_post_comment_fk
 FOREIGN KEY (post_id)

@@ -1,7 +1,7 @@
 <?php
 namespace App\Controllers;
 
-use App\Models\ArticleManager;
+use App\Manager\ArticleManager;
 use App\Service\View;
 
 /**
@@ -25,18 +25,6 @@ class ControllerAccueil extends ControllerAbstract
     $this->_view->generate(array('errorMsg' => $errorMsg));
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
  ?>

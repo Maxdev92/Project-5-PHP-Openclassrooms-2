@@ -5,37 +5,13 @@ namespace App\Models;
 /**
  *
  */
-class Article extends Model
+class Article extends AbstractModel
 {
-
-  private $_id;
   private $_title;
   private $_content;
   private $_creation_date;
 
-  public function __construct(array $data){
-    $this->hydrate($data);
-  }
-
-  //hydratation
-  public function hydrate(array $data){
-    foreach ($data as $key => $value) {
-      $method = 'set'.ucfirst($key);
-      if (method_exists($this, $method)) {
-        $this->$method($value);
-      }
-    }
-  }
-
   //setters
-
-  public function setId($id)
-  {
-    $id = (int) $id;
-    if ($id > 0) {
-      $this->_id = $id;
-    }
-  }
 
   public function setTitle($title)
   {
@@ -58,22 +34,19 @@ class Article extends Model
   }
 
   //getters
-  public function id()
-  {
-    return $this->_id;
-  }
+ 
 
-  public function title()
+  public function getTitle()
   {
     return $this->_title;
   }
 
-  public function content()
+  public function getContent()
   {
     return $this->_content;
   }
 
-  public function creation_date()
+  public function getCreationDate()
   {
     return $this->_creation_date;
   }

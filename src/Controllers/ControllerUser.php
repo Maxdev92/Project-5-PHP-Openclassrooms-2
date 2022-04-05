@@ -3,58 +3,45 @@
 namespace App\Controllers;
 
 use App\Service\View;
-use app\Models\RegisterManager;
+use App\Manager\UserManager;
+use Exception;
+use PDOException;
 
 class ControllerUser extends ControllerAbstract{
 
-  public function __construct(private RegisterManager $registerManager){}
+  public function __construct(){
+    $this->userManager = new UserManager;
+  }
  
     public function login(){
       if(isset($_POST['login']) 
       && isset($_POST['username']) && !empty($_POST['username']) 
-      && isset($_POST['password']) && !empty($_POST['password']) ){
-        $this->_view = new View('accueil', 'accueil');
-        $this->_view->generate();
-    
-        // onva véririfer qu'un utilisateur existe avec ces credentials
-
-         //si il existe, on le connecte
-         // $_session["user"]= "maxime"
-
-         //sinon on le renvoi à la page de login avec un message d'erreur
-       /*  $username = $user->escape_string($_POST['username']);
-        $password = $user->escape_string($_POST['password']);
+      && isset($_POST['password']) && !empty($_POST['password']))
+      { 
+        //on vérifie qu'un utilisateur existe avec ce mot de pass et ce login
+        //on va faire une requette en bdd pour chercher l'utilisateur
        
-        $auth = $user->check_login($username, $password);
-       
-        if(!$auth){
-          $_SESSION['message'] = 'Pseudo ou mot de passe invalide';
-            header(''); 
+        if($this->userManager->login($_POST['username'], $_POST['password'])){
+          //on le connecte
+        $this->addFlash("success", "Vous êtes connecté");
+        $this->renderview('accueil','accueil' );
         }
         else{
-          $_SESSION['user'] = $auth;
-          header(''); 
-        }*/
+          $this->addFlash("error", "Le mot de passe ou l'username est faux");
+          $this->renderview('user','login' );
+        }
+    
+     
       }
       else{
         if( isset($_POST['username']) && empty($_POST['username']) 
-        ||  isset($_POST['password']) && empty($_POST['password'])){
-        }
-          $_SESSION["error"] = "Veuillez renseigner toutes les informations";
+        ||  isset($_POST['password']) && empty($_POST['password']))
+        $this->addFlash("error",  "Informations manquantes ou incorrectes") ;
         $this->_view = new View('user', 'login');
         $this->_view->generate();
       }
  
-       /*  $sql = "SELECT * FROM user WHERE username = '$username' AND password = '$password'";
-        $query = $this->connection->query($sql);
- 
-        if($query->num_rows > 0){
-            $row = $query->fetch_array();
-            return $row['id'];
-        }
-        else{
-            return false;
-        } */
+
     }
 
     public function register(){  
@@ -63,16 +50,29 @@ class ControllerUser extends ControllerAbstract{
       && isset($_POST['username']) && !empty($_POST['username'])
       && isset($_POST['email']) && !empty($_POST['email'])
       && isset($_POST['password']) && !empty($_POST['password']) ){
-        $this->registerManager->sendRegister('username', 'email', 'password');
+        try{
+           if($this->userManager->register($_POST['username'], $_POST['email'], $_POST['password'])){
+          $this->addFlash("success", "Inscription réussie, vous pouvez vous connecter");
+          $this->renderview('user', 'login');
+            }else{
+          $this->addFlash("error", "une erreur est survenue");
+          $this->renderview('user', 'register');
+        }
+
+        }catch(PDOException $e){
+          $this->addFlash("error", "L'utilisateur est déjà connu en bdd. l'username et l'eamil doivent être unique");
+          $this->renderview('user', 'register');
+        }
+          //message de succès et redirection vers la page de login
+       
       }
       else{
         if( isset($_POST['username']) && empty($_POST['username'])
         ||  isset($_POST['email']) && empty($_POST['email'])
         ||  isset($_POST['password']) && empty($_POST['password'])){
-          $_SESSION["error"] = "Veuillez renseigner toutes les informations";
+          $_SESSION["error"] = "Informations manquantes ou incorrectes";
           }
-          $this->_view = new View('user', 'Register');
-          $this->_view->generate();
+          $this->renderview('user','register' );
         }
       }
  
@@ -84,7 +84,15 @@ class ControllerUser extends ControllerAbstract{
  
         return $row;       
     }
+    
+    public function deconnexion(){
+      $this->addFlash("success", "vous etes bien deconnecté");
+      UserManager::disConnectUser();
  
+      $this->renderview('accueil','accueil' );
+
+    }
+
     public function escape_string($value){
  
         return $this->connection->real_escape_string($value);
