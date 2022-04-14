@@ -1,5 +1,5 @@
 
-	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	<!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"> -->
 	<div class="slider"></div><!-- slider -->
 
 <section class="blog-area section">
@@ -24,7 +24,7 @@
 
             <div class="blog-info">
 
-              <h4 class="title"><a href="article&id=<?= $article->id() ?>"><b><?= $article->title() ?></b></a></h4>
+              <h4 class="title"><a href="article&id=<?= $article->getId() ?>"><b><?= $article->getTitle() ?></b></a></h4>
 
               <ul class="post-footer">
                 <li><a href="#"><i class="ion-heart"></i>57</a></li>

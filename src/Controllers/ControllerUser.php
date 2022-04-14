@@ -93,6 +93,25 @@ class ControllerUser extends ControllerAbstract{
 
     }
 
+    public function cvDownload(){
+      $file= "CV_Geoffroy_Dutot.pdf";
+      if(file_exists($file)) {
+        header('Content-Description: CV Mawime');
+        header('Content-Type: application/octet-stream');
+        header('Content-Disposition: attachment; filename="'.basename($file).'"');
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate');
+        header('Pragma: public');
+        header('Content-Length: ' . filesize($file));
+        flush(); // Flush system output buffer
+        readfile($file);
+        die();
+    } else {
+        http_response_code(404);
+      die();
+    }
+    }
+
     public function escape_string($value){
  
         return $this->connection->real_escape_string($value);
