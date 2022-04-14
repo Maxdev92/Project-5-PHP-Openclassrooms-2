@@ -47,7 +47,9 @@
 
 			<ul class="main-menu visible-on-click" id="main-menu">
 				<li><a href="http://localhost/blog-mvc-master/">Accueil</a></li>
+				<?php if (isset($_SESSION['role']) && $_SESSION['role'] == "admin"):?>			
 				<li><a href="?module=post&action=createPost">Créer un article</a></li>
+				<?php endif ?>
 				<li><a href="?module=user&action=Login">Se connecter</a></li>
 				<li><a href="?module=user&action=Register">S'inscrire</a></li>
 			</ul><!-- main-menu -->

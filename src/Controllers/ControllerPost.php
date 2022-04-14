@@ -32,7 +32,7 @@ class ControllerPost extends ControllerAbstract
   }
 
   //fonction pour afficher le formulaire de création d'un article
-  public function create()
+  public function createPost()
   {
     
       $this->_view = new View('post','CreatePost');
