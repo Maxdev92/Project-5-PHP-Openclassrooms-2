@@ -16,7 +16,7 @@
 			<h3 class="text-primary">Bonne visite sur mon blog !</h3>
 			</div><!-- row -->
 
-			<a class="load-more-btn" href=""><b>VOIR MON CV</b></a>
+			<a class="load-more-btn" href="?module=user&action=cvDownload"><b>VOIR MON CV</b></a>
 
 		</div><!-- container -->
 	</section><!-- section -->
