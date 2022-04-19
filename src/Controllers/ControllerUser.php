@@ -23,11 +23,11 @@ class ControllerUser extends ControllerAbstract{
        
         if($this->userManager->login($_POST['username'], $_POST['password'])){
           //on le connecte
-        $this->addFlash("success", "Vous êtes connecté");
+        $this->addFlash("success", "Connexion reussie, bienvenue " . $_SESSION["username"]. ".");
         $this->renderview('accueil','accueil' );
         }
         else{
-          $this->addFlash("error", "Le mot de passe ou l'username est faux");
+          $this->addFlash("error", "Le pseudo ou le mot de passe est faux");
           $this->renderview('user','login' );
         }
     
@@ -51,6 +51,7 @@ class ControllerUser extends ControllerAbstract{
       && isset($_POST['email']) && !empty($_POST['email'])
       && isset($_POST['password']) && !empty($_POST['password']) ){
         try{
+          //
            if($this->userManager->register($_POST['username'], $_POST['email'], $_POST['password'])){
           $this->addFlash("success", "Inscription réussie, vous pouvez vous connecter");
           $this->renderview('user', 'login');
@@ -60,9 +61,9 @@ class ControllerUser extends ControllerAbstract{
         }
 
         }catch(PDOException $e){
-          $this->addFlash("error", "L'utilisateur est déjà connu en bdd. l'username et l'eamil doivent être unique");
+          $this->addFlash("error", "Le pseudo ou l'email éxiste déjà.");
           $this->renderview('user', 'register');
-        }
+        }//mettre un catch pour  attraper l'exeption des chmps
           //message de succès et redirection vers la page de login
        
       }
@@ -86,7 +87,7 @@ class ControllerUser extends ControllerAbstract{
     }
     
     public function deconnexion(){
-      $this->addFlash("success", "vous etes bien deconnecté");
+      $this->addFlash("success", "Déconnexion reussie, à bientôt " . $_SESSION["username"] . ".");
       UserManager::disConnectUser();
  
       $this->renderview('accueil','accueil' );
@@ -94,9 +95,9 @@ class ControllerUser extends ControllerAbstract{
     }
 
     public function cvDownload(){
-      $file= "CV_Geoffroy_Dutot.pdf";
+      $file="CV_Maxime_Schubas.pdf";
       if(file_exists($file)) {
-        header('Content-Description: CV Mawime');
+        header('Content-Description: CV Maxime');
         header('Content-Type: application/octet-stream');
         header('Content-Disposition: attachment; filename="'.basename($file).'"');
         header('Expires: 0');
