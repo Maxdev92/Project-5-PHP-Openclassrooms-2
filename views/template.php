@@ -56,7 +56,7 @@
 				<li><a href="?module=user&action=deconnexion">Se déconnecter</a></li>
 			<?php endif; ?>
 			<?php if (isset($_SESSION['username'])):?>
-        <li  ><a> <?= $_SESSION["username"] ?></a></li>
+        <li><a> <?= $_SESSION["username"] ?></a></li>
     <?php endif; ?>
 		
 			</ul><!-- main-menu -->

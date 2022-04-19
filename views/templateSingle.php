@@ -50,8 +50,16 @@
 				<?php if (isset($_SESSION['role']) && $_SESSION['role'] == "admin"):?>			
 				<li><a href="?module=post&action=createPost">Créer un article</a></li>
 				<?php endif ?>
+				<?php if (!isset($_SESSION['username'])):?>
 				<li><a href="?module=user&action=Login">Se connecter</a></li>
 				<li><a href="?module=user&action=Register">S'inscrire</a></li>
+			<?php endif; ?>
+			<?php if (isset($_SESSION['username'])):?>
+				<li><a href="?module=user&action=deconnexion">Se déconnecter</a></li>
+			<?php endif; ?>
+			<?php if (isset($_SESSION['username'])):?>
+        <li><a> <?= $_SESSION["username"] ?></a></li>
+    <?php endif; ?>
 			</ul><!-- main-menu -->
 
 			<div class="src-area">
