@@ -7,8 +7,8 @@ class CommentManager extends AbstractManager
 
 {
    
-  public function getComments(){
-    return $this->getAll('comment', Comment::class);
+  public function getComments($postId){
+    return $this->getAll('comment', Comment::class ,"WHERE status = 1 and postId =".$postId);
     }
   
     public function getComment($id, $author, $content){
