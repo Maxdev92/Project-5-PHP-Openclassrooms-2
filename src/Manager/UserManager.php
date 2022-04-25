@@ -2,6 +2,8 @@
 
 namespace App\Manager;
 
+use App\Models\User;
+
 class UserManager extends AbstractManager
 {
 
@@ -18,7 +20,7 @@ class UserManager extends AbstractManager
     
     $passwordHashed = password_hash($password, self::ALGO);
     $req = self::$_bdd->prepare
-    ("INSERT INTO user(username, email, password, role, created_at) values(?, ?, ?, ?, ?)");  
+    ("INSERT INTO user(username, email, password, role, createdAt) values(?, ?, ?, ?, ?)");  
     $result = $req->execute([$username, $email, $passwordHashed, 'user', date("Y-m-d")]);
     $req->closeCursor();
     return $result;
@@ -49,6 +51,10 @@ class UserManager extends AbstractManager
   static public function disConnectUser(){
     unset($_SESSION["username"]);
     unset($_SESSION["role"]);
+  }
+
+  static function getUser(int $id){
+    return self::getOne('user', User::class, $id);
   }
 
 

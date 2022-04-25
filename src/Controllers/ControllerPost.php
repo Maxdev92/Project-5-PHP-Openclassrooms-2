@@ -2,6 +2,7 @@
 namespace App\Controllers;
 
 use App\Manager\ArticleManager;
+use App\Manager\CommentManager;
 use App\Service\View;
 use Exception;
 
@@ -9,10 +10,16 @@ class ControllerPost extends ControllerAbstract
 
 {
   private $_articleManager;
+  private $_commentManager;
   private $_view;
+   public function __construct()
+   {
+    $this->_articleManager = new ArticleManager;
+    $this->_commentManager = new CommentManager;
+   }
 
   public function listPost(){
-    $this->_articleManager = new ArticleManager;
+
     $articles = $this->_articleManager->getArticles();
     $this->_view = new View('post', 'listPost');
     $this->_view->generatePost(array('articles' => $articles));
@@ -21,10 +28,12 @@ class ControllerPost extends ControllerAbstract
   public function article()
   {
     if (isset($_GET['id'], $_GET['id'])) {
-      $this->_articleManager = new ArticleManager;
       $article = $this->_articleManager->getArticle($_GET['id']);
+      $comments = $this->_commentManager->getComments($_GET['id']);
+      // dd($comments);
       $this->_view = new View('post', 'SinglePost');
-      $this->_view->generatePost(array('article' => $article));
+      //ajouter comments dans le tableau
+      $this->_view->generatePost(['article' => $article,'comments' => $comments]);
     }else{
       throw new Exception("Veuillez renseigner l'id pour accèder à cette page");
     }
