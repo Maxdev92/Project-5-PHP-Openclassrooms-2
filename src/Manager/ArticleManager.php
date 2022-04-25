@@ -25,7 +25,7 @@ class ArticleManager extends AbstractManager
 
     protected function createPost($table, $obj)
   {
-    $req = self::$_bdd->prepare("INSERT INTO ".$table." (title, content, creation_date) VALUES (?, ?, ?)");
+    $req = self::$_bdd->prepare("INSERT INTO ".$table." (title, content, creationDate) VALUES (?, ?, ?)");
     $req->execute(array($_POST['title'], $_POST['content'], date("Y.d.m")));
 
     $req->closeCursor();

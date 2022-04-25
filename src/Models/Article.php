@@ -27,9 +27,9 @@ class Article extends AbstractModel
     }
   }
 
-  public function setDate($date)
+  public function setCreationDate($date)
   {
-      $this->_creation_date = $date;
+      $this->_creation_date = $this->formatDate($date);
 
   }
 

@@ -10,7 +10,7 @@ abstract class AbstractManager
 
   //connexion a la bdd
   public function __construct(){
-    self::$_bdd = DbConnect::getInstance();
+    static::$_bdd = DbConnect::getInstance();
   }
 
 
@@ -18,10 +18,10 @@ abstract class AbstractManager
   //de récupération de liste d'elements
   //dans la bdd
 
-  protected function getAll(string $table,string $obj){
+  protected function getAll(string $table,string $obj,string $where=null){
 
     $var = [];
-    $req = self::$_bdd->prepare('SELECT * FROM '.$table.' ORDER BY id desc');
+    $req = self::$_bdd->prepare('SELECT * FROM '.$table.' '.$where.' ORDER BY id desc');
     $req->execute();
 
     //on crée la variable data qui
@@ -37,13 +37,13 @@ abstract class AbstractManager
 
   }
 
-  protected function getOne($table, $obj, $id)
+  static protected function getOne($table, $obj, $id): mixed
   {
     $var = [];
-    $req = self::$_bdd->prepare("SELECT id, title, content, DATE_FORMAT(date, '%d/%m/%Y à %Hh%imin%ss') AS date FROM ".$table." WHERE id = ?");
-    $req->execute(array($id));
+    $req = static::$_bdd->prepare("SELECT * FROM ".$table." WHERE id = ?");
+    $req->execute(array((int)$id));
     while ($data = $req->fetch(\PDO::FETCH_ASSOC)) {
-      $var[] = new $obj($data);
+      $var = new $obj($data);
     }
 
     return $var;
