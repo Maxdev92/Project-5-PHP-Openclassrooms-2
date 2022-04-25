@@ -68,7 +68,9 @@ header{ font-weight: 400; }
 
 .display-table-cell{ display: table-cell; vertical-align: middle; }
 
-.card{ background: transparent; border: 0; }
+.card{ background: rgb(213, 216, 243);  margin: 10px; }
+
+.card-title{ font-weight: bold; }
 
 .no-side-padding{ padding-right: 0px; padding-left: 0px; }
 

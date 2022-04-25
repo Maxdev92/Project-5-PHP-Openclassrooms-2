@@ -14,6 +14,7 @@ class ControllerUser extends ControllerAbstract{
   }
  
     public function login(){
+      
       if(isset($_POST['login']) 
       && isset($_POST['username']) && !empty($_POST['username']) 
       && isset($_POST['password']) && !empty($_POST['password']))
@@ -24,6 +25,11 @@ class ControllerUser extends ControllerAbstract{
         if($this->userManager->login($_POST['username'], $_POST['password'])){
           //on le connecte
         $this->addFlash("success", "Connexion reussie, bienvenue " . $_SESSION["username"]. ".");
+        if(isset($_SESSION["redirect"])){
+          $redirect = $_SESSION["redirect"];
+          unset($_SESSION["redirect"]);
+          header("Location:" . $redirect);exit;
+        }
         $this->renderview('accueil','accueil' );
         }
         else{
@@ -37,6 +43,20 @@ class ControllerUser extends ControllerAbstract{
         if( isset($_POST['username']) && empty($_POST['username']) 
         ||  isset($_POST['password']) && empty($_POST['password']))
         $this->addFlash("error",  "Informations manquantes ou incorrectes") ;
+        //Detecte si provient de la page d'un article, si oui redirection apres connexion
+        // dd($_SERVER["HTTP_REFERER"]);
+        $url_components = parse_url($_SERVER["HTTP_REFERER"]);
+  
+// Use parse_str() function to parse the
+// string passed via URL
+parse_str($url_components['query'], $params);
+        if( $params["module"] =="post"
+        &&  $params["action"] =="article" 
+        && isset($params["id"])){
+          $_SESSION["redirect"]= $_SERVER["HTTP_REFERER"];
+          // dd($_SESSION);
+        }
+        // dd("pas ok");
         $this->_view = new View('user', 'login');
         $this->_view->generate();
       }

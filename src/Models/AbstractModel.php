@@ -24,4 +24,11 @@ abstract class AbstractModel{
   public function getId(){
     return $this->_id;
   }
+
+  public function formatDateTime(string $datetime): string{
+    return (new \DateTime($datetime))->format("d/m/Y à H:i");
+  }
+  public function formatDate(string $datetime) :string{
+    return (new \DateTime($datetime))->format("d/m/Y");
+  }
 }

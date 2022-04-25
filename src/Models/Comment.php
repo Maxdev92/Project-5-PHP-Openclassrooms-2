@@ -1,71 +1,64 @@
 <?php
 namespace App\Models;
 
+use App\Manager\UserManager;
 
 /**
  *
  */
 class Comment extends AbstractModel
 {
-  private $_post_id;
-  private $_comment;
+  private $_content;
+  private $post_id;
   private $_author;
-  private $_comment_date;
+  private $_creation_date;
 
   //setters
-
-  public function setPostId($post_id)
+  public function getPostId(){
+    return $this->post_id;
+  }
+  
+  public function setPostId($post_id){
+    $this->post_id = $post_id;
+  }
+  public function setContent(string $content)
   {
-    if (is_int($post_id)) {
-      $this->_post_id = $post_id;
-    }
+  
+      $this->_content = $content;
+  
   }
 
-  public function setComment($comment)
+  public function setAuthor(int $author)
   {
-    if (is_string($comment)) {
-      $this->_comment = $comment;
-    }
+      
+      $this->_author = UserManager::getUser($author)->getUsername();
   }
 
-  public function setAuthor($author)
+  public function setCreationDate( $creation_date)
   {
-    if (is_string($author)) {
-      $this->_author = $author;
-    }
-
-  }
-
-  public function setCommentDate($comment_date)
-  {
-      $this->_comment_date = $comment_date;
-
+      $this->_creation_date = $this->formatDateTime($creation_date);
   }
 
   //getters
-  public function id()
+  public function getId()
   {
     return $this->_id;
   }
 
-  public function postId()
+
+  public function getContent()
   {
-    return $this->_post_id;
+    return $this->_content;
   }
 
-  public function comment()
-  {
-    return $this->_comment;
-  }
-
-  public function author()
+  public function getAuthor()
   {
     return $this->_author;
   }
 
-  public function comment_date()
+  public function getCreationDate()
   {
-    return $this->_comment_date;
+    return $this->_creation_date;
   }
 
 
