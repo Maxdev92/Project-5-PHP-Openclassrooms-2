@@ -34,7 +34,7 @@
   </div>
 	<div class="form-check">
     <input type="checkbox" name="accept" class="form-check-input" id="exampleCheck1" required>
-    <label class="form-check-label" for="exampleCheck1">Accepter les conditions d'utilisation</label>
+    <label class="form-check-label" for="exampleCheck1">&nbsp;Accepter les conditions d'utilisation</label>
   </div>
   <button type="submit" name="submit" class="btn btn-primary">Envoyer</button>
 		</form>
