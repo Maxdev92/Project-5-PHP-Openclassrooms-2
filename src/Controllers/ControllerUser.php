@@ -47,15 +47,16 @@ class ControllerUser extends ControllerAbstract{
         // dd($_SERVER["HTTP_REFERER"]);
         $url_components = parse_url($_SERVER["HTTP_REFERER"]);
   
-// Use parse_str() function to parse the
-// string passed via URL
-parse_str($url_components['query'], $params);
+        if(isset($url_components['query'])){
+          parse_str($url_components['query'], $params);
         if( $params["module"] =="post"
         &&  $params["action"] =="article" 
         && isset($params["id"])){
           $_SESSION["redirect"]= $_SERVER["HTTP_REFERER"];
           // dd($_SESSION);
         }
+        }
+        
         // dd("pas ok");
         $this->_view = new View('user', 'login');
         $this->_view->generate();

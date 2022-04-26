@@ -10,16 +10,20 @@ class CommentManager extends AbstractManager
   public function getComments($postId){
     return $this->getAll('comment', Comment::class ,"WHERE status = 1 and postId =".$postId);
     }
-  
-    public function getComment($id, $author, $content){
+
+  public function getWaitComments(){
+      return $this->getAll('comment', Comment::class ,"WHERE status = 0");
+      }
+    
+  public function getComment($id, $author, $content){
         return $this->getCom('comment', Comment::class, $id);
       }
   
-    public function createComment($postId, $content, $author, $creation_date){
+  public function createComment($postId, $content, $author, $creation_date){
         return $this->createCom('comment', Comment::class, $postId);
       }
       
-    public function changeComment($postId, $author, $comment, $commentId){
+  public function changeComment($postId, $author, $comment, $commentId){
 
         $db = $this->DbConnect::getInstance();
         $comment = $db->prepare("UPDATE comments SET author = ?, comment = ?, comment_date = NOW() WHERE id = ? AND post_id = ?");
@@ -41,6 +45,7 @@ class CommentManager extends AbstractManager
     return $var;
     $req->closeCursor();
   }
+
   
   protected function createCom($table, $obj)
   {

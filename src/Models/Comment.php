@@ -34,7 +34,7 @@ class Comment extends AbstractModel
       $this->_author = UserManager::getUser($author)->getUsername();
   }
 
-  public function setCreationDate( $creation_date)
+  public function setCreationDate($creation_date)
   {
       $this->_creation_date = $this->formatDateTime($creation_date);
   }
