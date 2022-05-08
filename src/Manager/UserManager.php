@@ -47,10 +47,12 @@ class UserManager extends AbstractManager
   static public function connectUser(array $user){
     $_SESSION['username'] = $user['username'] ;
     $_SESSION['role'] = $user['role'] ;
+    $_SESSION['id'] = $user['id'] ;
   }
   static public function disConnectUser(){
     unset($_SESSION["username"]);
     unset($_SESSION["role"]);
+    unset($_SESSION["id"]);
   }
 
   static function getUser(int $id){

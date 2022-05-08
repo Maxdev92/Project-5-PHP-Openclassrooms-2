@@ -64,13 +64,6 @@
 		
 			</ul><!-- main-menu -->
 
-			<div class="src-area">
-				<form>
-					<button class="src-btn" type="submit"><i class="ion-ios-search-strong"></i></button>
-					<input class="src-input" type="text" placeholder="Entrez votre recherche">
-				</form>
-			</div>
-
 		</div><!-- container -->
 	</header>
 	<?php if(isset($_SESSION["error"])): ?>
