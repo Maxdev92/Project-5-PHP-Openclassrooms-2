@@ -21,4 +21,10 @@ abstract class ControllerAbstract{
     $_SESSION[$key] = $message;
   }
 
+
+  public function isAdmin(): bool
+  {
+     return isset($_SESSION['role']) && $_SESSION['role'] == "admin";
+  }
+
 }
