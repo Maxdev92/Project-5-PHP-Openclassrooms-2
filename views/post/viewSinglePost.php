@@ -65,17 +65,10 @@
 			<?php if (isset($_SESSION['username'])):?>
         <div class="col-lg-8 col-md-12">
           <div class="comment-form">
-            <form method="post">
+            <form method="post" action="?module=post&action=createCom">
               <div class="row">
-
-                <div class="col-sm-6">
-                  <input type="text" aria-required="true" name="contact-form-name" class="form-control"
-                  placeholder="Entrez votre pseudo" aria-invalid="true" required >
-                </div><!-- col-sm-6 -->
-                <div class="col-sm-6">
-                <input type="email" aria-required="true" name="contact-form-email" class="form-control"
-                  placeholder="Entrez votre e-mail" aria-invalid="true" required>
-                </div><!-- col-sm-6 -->
+                <input type="hidden" name="postId" value="<?= $article->getId() ?>"></input>
+              
 
                 <div class="col-sm-12">
                   <textarea name="contact-form-message" rows="2" class="text-area-messge form-control"
