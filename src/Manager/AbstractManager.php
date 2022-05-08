@@ -37,6 +37,24 @@ abstract class AbstractManager
 
   }
 
+  protected function getCount(string $table,string $obj,string $where=null){
+
+    $var = [];
+    $req = self::$_bdd->prepare('SELECT count(*) as count FROM '.$table.' '.$where.'');
+    $req->execute();
+
+    //on crée la variable data qui
+    //va contenir les données
+    $data = $req->fetch();
+      // var contiendra les données sous forme d'objets
+   
+    return $data["count"];
+    $req->closeCursor();
+
+
+  }
+
+
   static protected function getOne($table, $obj, $id): mixed
   {
     $var = [];

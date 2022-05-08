@@ -26,8 +26,7 @@
 
               <h4 class="title"><a href="?module=post&action=article&id=<?= $article->getId() ?>"><b><?= $article->getTitle() ?></b></a></h4>
               <ul class="post-footer">
-                <li><a href="#"><i class="ion-heart"></i>57</a></li>
-                <li><a href="#"><i class="ion-chatbubble"></i>6</a></li>
+                <li><a href="#"><i class="ion-chatbubble"></i><?= $countComments[$article->getId()]?></a></li>
               </ul>
 
             </div><!-- blog-info -->
