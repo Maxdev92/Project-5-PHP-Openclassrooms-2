@@ -9,7 +9,11 @@ class CommentManager extends AbstractManager
    
   public function getComments($postId){
     return $this->getAll('comment', Comment::class ,"WHERE status = 1 and postId =".$postId);
-    }
+  }
+
+  public function getCountComment($postId){
+    return $this->getCount('comment', Comment::class, "WHERE status = 1 and postId =".$postId);
+  }
 
   public function getWaitComments(){
       return $this->getAll('comment', Comment::class ,"WHERE status = 0");
@@ -19,20 +23,36 @@ class CommentManager extends AbstractManager
         return $this->getCom('comment', Comment::class, $id);
       }
   
-  public function createComment($postId, $content, $author, $creation_date){
-        return $this->createCom('comment', Comment::class, $postId);
-      }
       
   public function changeComment($postId, $author, $comment, $commentId){
 
-        $db = $this->DbConnect::getInstance();
-        $comment = $db->prepare("UPDATE comments SET author = ?, comment = ?, comment_date = NOW() WHERE id = ? AND post_id = ?");
+       $req = self::$_bdd->prepare("UPDATE comments SET author = ?, comment = ?, comment_date = NOW() WHERE id = ? AND post_id = ?");
   
-        $affectedComment = $comment->execute(array($author, $comment, $commentId, $postId));
+        $req->execute(array($author, $comment, $commentId, $postId));
   
-        return $affectedComment;
+        return $req;
   
     } 
+
+    public function allowComment($commentId){
+      $req = self::$_bdd->prepare("UPDATE comment SET status = 1 where id = ?");
+
+      $req->execute(array($commentId));
+
+      return $req;
+
+  }
+
+  public function denyComment($commentId){
+
+     $req = self::$_bdd->prepare("DELETE comment where id = ?");
+
+      $req->execute(array($commentId));
+
+      return $req;
+
+  }
+
     protected function getCom($table, $obj, $id)
   {
     $var = [];
@@ -47,15 +67,15 @@ class CommentManager extends AbstractManager
   }
 
   
-  protected function createCom($table, $obj)
+  public function createCom()
   {
-    $req = self::$_bdd->prepare("INSERT INTO ".$table." (post_id, content, author, creation_date) VALUES (?, ?, ?, ?)");
-    $req->execute(array($_POST['author'], $_POST['content'], date("d.m.Y")));
+    $req = self::$_bdd->prepare("INSERT INTO comment (post_id, content, author, creation_date) VALUES (?, ?, ?, NOW())");
+    $req->execute(array( $_POST['postId'], $_POST['content'],$_SESSION["id"]));
 
     $req->closeCursor();
   }
    
 }
 
-    
+
     
