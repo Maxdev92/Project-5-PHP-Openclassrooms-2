@@ -21,6 +21,7 @@ class Comment extends AbstractModel
   public function setPostId($post_id){
     $this->post_id = $post_id;
   }
+
   public function setContent(string $content)
   {
   
@@ -38,13 +39,6 @@ class Comment extends AbstractModel
   {
       $this->_creation_date = $this->formatDateTime($creation_date);
   }
-
-  //getters
-  public function getId()
-  {
-    return $this->_id;
-  }
-
 
   public function getContent()
   {
