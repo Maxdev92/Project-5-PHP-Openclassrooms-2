@@ -24,7 +24,7 @@ CREATE TABLE `article` (
                 title VARCHAR(45) NOT NULL,
                 chapo VARCHAR(45) NOT NULL,
                 content TEXT NOT NULL,
-                idAuthor INT NOT NULL, 
+                idAuthor INT DEFAULT 1, 
                 creationDate DATETIME NOT NULL,
                 modifiedAt DATETIME,
                 PRIMARY KEY (id)
@@ -72,7 +72,7 @@ CREATE TABLE `comment` (
 
 insert into `comment` (postId, content, author, creationDate, status)
 values  
-        (1, 'Trop bien le post', 2, NOW(),1),
+        (1, 'Trop bien le post', 2, NOW(), 1),
         (2, 'Trop bien le post', 1, NOW(), 1),
         (3, 'Trop bien le post', 2, NOW(), 0);
 

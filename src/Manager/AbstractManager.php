@@ -37,8 +37,7 @@ abstract class AbstractManager
 
   }
 
-  protected function getCount(string $table,string $obj,string $where=null){
-
+  protected function getCount(string $table, string $obj, string $where=null){ int:
     $var = [];
     $req = self::$_bdd->prepare('SELECT count(*) as count FROM '.$table.' '.$where.'');
     $req->execute();

@@ -38,7 +38,5 @@
 
     </div><!-- row -->
 
-    <a class="load-more-btn" href="?module=post&action=createPost"><b>CRÉER UN ARTICLE</b></a>
-
   </div><!-- container -->
 </section><!-- section -->
