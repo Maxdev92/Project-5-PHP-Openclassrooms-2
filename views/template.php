@@ -59,7 +59,7 @@
 				<li><a href="?module=post&action=Moderation">Modération</a></li>
 				<?php endif ?>
 			<?php if (isset($_SESSION['username'])):?>
-        <li><a> <?= $_SESSION["username"] ?></a></li>
+        <li><a class="text-primary"> <?= $_SESSION["username"] ?></a></li>
     <?php endif; ?>
 		
 			</ul><!-- main-menu -->
@@ -101,6 +101,7 @@
 							<li><a href="https://www.facebook.com/maxime.s.schubas/" target="_blank"><i class="ion-social-facebook-outline"></i></a></li>
 							<li><a href="https://mobile.twitter.com/maks92i" target="_blank"><i class="ion-social-twitter-outline"></i></a></li>
 							<li><a href="https://www.twitch.tv/maks92i" target="_blank"><i class="ion-social-twitch-outline"></i></a></li>
+							<li><a href="https://reddit.com/MaKs92i" target="_blank"><i class="ion-social-reddit-outline"></i></a></li>
 							<li><a href="https://github.com/Maxdev92" target="_blank"><i class="ion-social-github-outline"></i></a></li>
 						</ul>
 
