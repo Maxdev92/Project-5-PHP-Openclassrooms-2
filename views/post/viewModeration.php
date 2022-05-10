@@ -26,13 +26,11 @@
 
                     <div class="col-sm-8">    
 
-                      <h3>Commentaires en attente de validation</h3>
+                        <h3><?= $countComments ?> Commentaire(s) en attente de validation</h3>
+
                       <?php
                         foreach ($waitComments as $waitComment):
-                     
                       ?> 
-
-        
                       <div class="card">
                         <div class="card-body">
                           <h5 class="card-title"><?= $waitComment->getAuthor() ?></h5>
@@ -55,5 +53,4 @@
       </div>
     </div>
   </div>  
-</section>
 </section>

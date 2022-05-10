@@ -12,7 +12,7 @@ abstract class ControllerAbstract{
    * fonction qui rend la vue
    * @param string $module
    */
-  protected function renderview(string $module, string $action, ?array $data= null): void{
+  public function renderview(string $module, string $action, ?array $data= null): void{
     $this->_view = new View($module, $action);
     $this->_view->generate($data);
   }

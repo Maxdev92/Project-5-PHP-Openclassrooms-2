@@ -17,19 +17,20 @@
 			</div><!-- row -->
 
 			<a class="load-more-btn" href="?module=user&action=cvDownload"><b>VOIR MON CV</b></a>
-			<h2>Contactez moi</h2>
+
+			<h2>Me contacter</h2>
 			<form method="post" action="?module=accueil&action=sendMail">
   <div class="form-group">
-    <label for="name">Votre nom</label>
+    <label for="name">Nom</label>
     <input type="name" name="name" value="<?= $_POST['name'] ?? '' ?>" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Entrez votre nom" required>
   </div>
   <div class="form-group">
-    <label for="email">Votre e-mail</label>
+    <label for="email">E-mail</label>
     <input type="email" name="email" value="<?= $_POST['email'] ?? '' ?>" class="form-control" id="email" placeholder="Entrez votre e-mail" required>
 		<small id="emailHelp" class="form-text text-muted">Je ne partage pas votre e-mail.</small>
   </div>
 	<div class="form-group">
-    <label for="message">Votre message</label>
+    <label for="message">Message</label>
     <input type="text" name="message" value="<?= $_POST['message'] ?? '' ?>" class="form-control" id="message" aria-describedby="emailHelp" placeholder="Entrez votre message" required>
   </div>
 	<div class="form-check">

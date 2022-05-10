@@ -20,13 +20,13 @@ class ArticleManager extends AbstractManager
     }
 
   public function createArticle(){
-      return $this->createPost('article', Article::class);
+      return $this->createPost();
     }
 
-    protected function createPost($table, $obj)
+    protected function createPost()
   {
-    $req = self::$_bdd->prepare("INSERT INTO ".$table." (title, content, creationDate) VALUES (?, ?, ?)");
-    $req->execute(array($_POST['title'], $_POST['content'], date("Y.d.m")));
+    $req = self::$_bdd->prepare("INSERT INTO article (title, chapo, content, creationDate) VALUES (?, ?, ?, NOW())");
+    $req->execute(array($_POST['title'], $_POST['chapo'], $_POST['content']));
 
     $req->closeCursor();
   }

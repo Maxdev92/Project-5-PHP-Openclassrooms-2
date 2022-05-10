@@ -15,13 +15,10 @@
           <div class="blog-post-inner">
 
             <div class="post-info">
-
               <div class="left-area">
                 <a class="avatar" href="#"><img src="public/images/smartphone.jpg" alt="Profile Image"></a>
               </div>
-
               <div class="middle-area">
-                <a class="name" href="#"><b>Illustration d'article</b></a>
                 <h6 class="date">  <?=$article->getCreationDate()?></h6>
               </div>
 
@@ -33,21 +30,23 @@
 
           </div><!-- blog-post-inner -->
           <div class="post-icons-area">
+            <div class="card" >
+              <div class="card-body">
             <ul class="post-icons">
               <li><a href="#"><i class="ion-heart"></i> 57</a></li>
-              <li><a href="#"><i class="ion-chatbubble"></i> 6</a></li>
+              <li><a href="#"><i class="ion-chatbubble"></i><?= $countComments[$article->getId()]?></a></li>
               <li><a href="#"><i class="ion-eye"></i> 138</a></li>
             </ul>
-
             <ul class="icons">
               <li>PARTAGER : </li>
-              <li><a href="#"><i class="ion-social-facebook"></i></a></li>
-              <li><a href="#"><i class="ion-social-twitter"></i></a></li>
-              <li><a href="#"><i class="ion-social-pinterest"></i></a></li>
+              <li><a href="#"><i class="ion-social-facebook"></i> Facebook</a></li>
+              <li><a href="#"><i class="ion-social-twitter"></i> Twitter</a></li>
+              <li><a href="#"><i class="ion-social-reddit"></i> Reddit</a></li>
             </ul>
+              </div>
+            </div><!-- info-area -->
           </div>
-        </div><!-- info-area -->
-
+      </div>
       </div><!-- col-lg-4 col-md-12 -->
 
     </div><!-- row -->
@@ -67,11 +66,10 @@
           <div class="comment-form">
             <form method="post" action="?module=post&action=createCom">
               <div class="row">
-                <input type="hidden" name="postId" value="<?= $article->getId() ?>"></input>
-              
-
+                <!--Input caché servant à récuperer l'ID de l'article-->
+                <input type="hidden" name="id" value="<?= $article->getId() ?>"></input>
                 <div class="col-sm-12">
-                  <textarea name="contact-form-message" rows="2" class="text-area-messge form-control"
+                  <textarea name="content" rows="2" class="text-area-messge form-control"
                   placeholder="Entrez votre commentaire" aria-required="true" aria-invalid="false"></textarea >
                 </div><!-- col-sm-12 -->
                 <div class="col-sm-12">
@@ -88,7 +86,7 @@
     <div class="container">   
     	<div class="row">
             <div class="col-sm-8">             
-                <h3>Commentaires</h3>
+              <!--COMMENTAIRES-->
                 <?php
                 foreach ($comments as $comment):
                 ?> 

@@ -11,8 +11,12 @@ class CommentManager extends AbstractManager
     return $this->getAll('comment', Comment::class ,"WHERE status = 1 and postId =".$postId);
   }
 
-  public function getCountComment($postId){
+  public function getCountComment($postId){ int:
     return $this->getCount('comment', Comment::class, "WHERE status = 1 and postId =".$postId);
+  }
+
+  public function getCountWaitComment(){ int:
+    return $this->getCount('comment', Comment::class, "WHERE status = 0");
   }
 
   public function getWaitComments(){
@@ -26,7 +30,7 @@ class CommentManager extends AbstractManager
       
   public function changeComment($postId, $author, $comment, $commentId){
 
-       $req = self::$_bdd->prepare("UPDATE comments SET author = ?, comment = ?, comment_date = NOW() WHERE id = ? AND post_id = ?");
+       $req = self::$_bdd->prepare("UPDATE comment SET author = ?, comment = ?, comment_date = NOW() WHERE id = ? AND post_id = ?");
   
         $req->execute(array($author, $comment, $commentId, $postId));
   
@@ -40,16 +44,18 @@ class CommentManager extends AbstractManager
       $req->execute(array($commentId));
 
       return $req;
+      $req->closeCursor();
 
   }
 
   public function denyComment($commentId){
 
-     $req = self::$_bdd->prepare("DELETE comment where id = ?");
+     $req = self::$_bdd->prepare("DELETE comment FROM comment WHERE id = ?");
 
       $req->execute(array($commentId));
 
       return $req;
+      $req->closeCursor();
 
   }
 
@@ -69,8 +75,8 @@ class CommentManager extends AbstractManager
   
   public function createCom()
   {
-    $req = self::$_bdd->prepare("INSERT INTO comment (post_id, content, author, creation_date) VALUES (?, ?, ?, NOW())");
-    $req->execute(array( $_POST['postId'], $_POST['content'],$_SESSION["id"]));
+    $req = self::$_bdd->prepare("INSERT INTO comment (postId, content, author, creationDate) VALUES (?, ?, ?, NOW())");
+    $req->execute(array($_POST['id'], $_POST['content'], $_SESSION['id']));
 
     $req->closeCursor();
   }
