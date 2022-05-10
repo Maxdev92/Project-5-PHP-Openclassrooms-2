@@ -47,21 +47,22 @@
 
 			<ul class="main-menu visible-on-click" id="main-menu">
 				<li><a href="http://localhost/blog-mvc-master/">Accueil</a></li>
+				<li><a href="?module=post&action=listPost">Blog</a></li>
 				<?php if (isset($_SESSION['role']) && $_SESSION['role'] == "admin"):?>			
-				<li><a href="?module=post&action=createPost">Créer un article</a></li>
+				<li><a href="?module=post&action=displayFormPost">Créer un article</a></li>
 				<?php endif ?>
 				<?php if (!isset($_SESSION['username'])):?>
 				<li><a href="?module=user&action=Login">Se connecter</a></li>
 				<li><a href="?module=user&action=Register">S'inscrire</a></li>
 			<?php endif; ?>
-			<?php if (isset($_SESSION['username'])):?>
-				<li><a href="?module=user&action=deconnexion">Se déconnecter</a></li>
-			<?php endif; ?>
 			<?php if (isset($_SESSION['role']) && $_SESSION['role'] == "admin"):?>			
 				<li><a href="?module=post&action=Moderation">Modération</a></li>
 				<?php endif ?>
+				<?php if (isset($_SESSION['username'])):?>
+				<li><a href="?module=user&action=deconnexion">Se déconnecter</a></li>
+			<?php endif; ?>
 			<?php if (isset($_SESSION['username'])):?>
-        <li><a> <?= $_SESSION["username"] ?></a></li>
+        <li><a class="text-primary"> <?= $_SESSION["username"] ?></a></li>
     <?php endif; ?>
 			</ul><!-- main-menu -->
 
@@ -73,11 +74,6 @@
 		<?php unset($_SESSION["error"]); endif; ?>
 
   <?= $content ?>
-
-
-
-
-
 
 	<footer>
 
@@ -96,6 +92,7 @@
 							<li><a href="https://www.facebook.com/maxime.s.schubas/" target="_blank"><i class="ion-social-facebook-outline"></i></a></li>
 							<li><a href="https://mobile.twitter.com/maks92i" target="_blank"><i class="ion-social-twitter-outline"></i></a></li>
 							<li><a href="https://www.twitch.tv/maks92i" target="_blank"><i class="ion-social-twitch-outline"></i></a></li>
+							<li><a href="https://reddit.com/MaKs92i" target="_blank"><i class="ion-social-reddit-outline"></i></a></li>
 							<li><a href="https://github.com/Maxdev92" target="_blank"><i class="ion-social-github-outline"></i></a></li>
 						</ul>
 
