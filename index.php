@@ -1,5 +1,8 @@
 <?php
-require_once(dirname(__DIR__).'/BLOG-MVC-MASTER/vendor/autoload.php');
+session_start();
+require_once(__DIR__.'/vendor/autoload.php');
+
+use App\Manager\UserManager;
 use App\Router;
 
 

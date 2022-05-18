@@ -1,46 +1,31 @@
 <?php
 namespace App\Models;
 
+use App\Contract\ToArrayable;
+
 /**
  *
  */
-class Article
+class Article extends AbstractModel implements ToArrayable
 {
-
-  private $_id;
   private $_title;
+  private $_chapo;
   private $_content;
-  private $_date;
-
-  public function __construct(array $data){
-    $this->hydrate($data);
-  }
-
-  //hydratation
-  public function hydrate(array $data){
-    foreach ($data as $key => $value) {
-      $method = 'set'.ucfirst($key);
-      if (method_exists($this, $method)) {
-        $this->$method($value);
-      }
-    }
-  }
+  private $_creation_date;
+  private $_modified_at;
 
   //setters
-
-  public function setId($id)
-  {
-    $id = (int) $id;
-    if ($id > 0) {
-      $this->_id = $id;
-    }
-  }
 
   public function setTitle($title)
   {
     if (is_string($title)) {
       $this->_title = $title;
     }
+  }
+
+  public function setChapo(string $chapo)
+  {
+      $this->_chapo = $chapo;
   }
 
   public function setContent($content)
@@ -50,46 +35,58 @@ class Article
     }
   }
 
-  public function setDate($date)
+  public function setCreationDate($date)
   {
-      $this->_date = $date;
+      $this->_creation_date = $this->formatDate($date);
 
   }
+
+  public function setModifiedAt(string $modifiedAt)
+  {
+    $this->_modified_at = $this->formatDate($modifiedAt);
+  }
+
 
   //getters
-  public function id()
-  {
-    return $this->_id;
-  }
+ 
 
-  public function title()
+  public function getTitle()
   {
     return $this->_title;
   }
 
-  public function content()
+  public function getChapo()
+  {
+    return $this->_chapo;
+  }
+
+  public function getContent()
   {
     return $this->_content;
   }
 
-  public function date()
+  public function getCreationDate()
   {
-    return $this->_date;
+    return $this->_creation_date;
   }
 
+  public function getModifiedAt()
+  {
+    return $this->_modified_at;
+  }
+
+  public function toArray(): array{
+    return [
+      'title' => $this->getTitle(),
+      'chapo' => $this->getChapo(),
+      'content' => $this->getContent(),
+      'id' => $this->getId(),
+      'modifiedAt' => $this->getModifiedAt(),
+      'createdAt' => $this->getCreationDate()
+    ];
+  }
 
 
 }
 
 
-
-
-
-
-
-
-
-
-
-
- ?>

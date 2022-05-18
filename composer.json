@@ -11,5 +11,7 @@
             "email": "maxime.schubas@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "symfony/var-dumper": "^6.0"
+    }
 }
