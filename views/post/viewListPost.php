@@ -9,11 +9,8 @@
 
       <?php
       foreach ($articles as $article):
+     
        ?>
-
-
-
-
       <div class="col-lg-4 col-md-6">
         <div class="card h-100">
           <div class="single-post post-style-1">
@@ -24,9 +21,12 @@
 
             <div class="blog-info">
 
-              <h4 class="title"><a href="?module=post&action=article&id=<?= $article->getId() ?>"><b><?= $article->getTitle() ?></b></a></h4>
+              <h4 class="title"><a href="?module=post&action=article&id=<?= $article['id'] ?>"><b><?= $article['title'] ?></b></a></h4>
               <ul class="post-footer">
-                <li><a href="#"><i class="ion-chatbubble"></i><?= $countComments[$article->getId()]?></a></li>
+                <li><a href="#"><i class="ion-chatbubble"></i><?= $countComments[$article['id']]?></a></li>
+                <?php if ($article['modifiedAt'] !== NULL):?>
+                  <li><a href="#"><i class="ion-android-create"></i>Modifié le <?= $article['modifiedAt']?></a></li>
+                <?php endif ?>
               </ul>
 
             </div><!-- blog-info -->

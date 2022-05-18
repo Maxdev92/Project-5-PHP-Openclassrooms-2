@@ -23,21 +23,4 @@ final class DbConnect {
         return static::$instance;
     }
 
-    private function __construct(){}
-
-
-    /**
-     * prevent the instance from being cloned (which would create a second instance of it)
-     */
-    private function __clone()
-    {
-    }
-
-    /**
-     * prevent from being unserialized (which would create a second instance of it)
-     */
-    public function __wakeup()
-    {
-        throw new Exception("Cannot unserialize singleton");
-    }
 }

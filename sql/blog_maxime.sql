@@ -24,7 +24,7 @@ CREATE TABLE `article` (
                 title VARCHAR(45) NOT NULL,
                 chapo VARCHAR(45) NOT NULL,
                 content TEXT NOT NULL,
-                idAuthor INT DEFAULT 1, 
+                idAuthor INT(1) DEFAULT 1, 
                 creationDate DATETIME NOT NULL,
                 modifiedAt DATETIME,
                 PRIMARY KEY (id)
@@ -40,7 +40,7 @@ values
         Certains coûtent beaucoup plus cher que d’autres : l’écran, la batterie, la mémoire. Ces trois-là ne sont pas concernés – pour l’instant – par la pénurie de composants, mais le moindre ressort, la moindre résistance est tout aussi indispensable. Sans chacune de ces pièces, pas de smartphone. Or, ce sont ces éléments qui arrivent, en ce moment, en rupture de stock.  '
         ,1, 
         NOW(),
-        NULL),
+        NOW()),
 
         ('Le prix des smartphones', 
         'Plus on avance, plus ils sont chers ?', 
@@ -48,7 +48,7 @@ values
         Certains coûtent beaucoup plus cher que d’autres : l’écran, la batterie, la mémoire. Ces trois-là ne sont pas concernés – pour l’instant – par la pénurie de composants, mais le moindre ressort, la moindre résistance est tout aussi indispensable. Sans chacune de ces pièces, pas de smartphone. Or, ce sont ces éléments qui arrivent, en ce moment, en rupture de stock.  '
         ,1, 
         NOW(),
-        NULL),
+        NOW()),
 
         ('Le prix des smartphones', 
         'Plus on avance, plus ils sont chers ?', 
@@ -56,7 +56,7 @@ values
         Certains coûtent beaucoup plus cher que d’autres : l’écran, la batterie, la mémoire. Ces trois-là ne sont pas concernés – pour l’instant – par la pénurie de composants, mais le moindre ressort, la moindre résistance est tout aussi indispensable. Sans chacune de ces pièces, pas de smartphone. Or, ce sont ces éléments qui arrivent, en ce moment, en rupture de stock.  '
         ,1, 
         NOW(),
-        NULL);
+        NOW());
 
 
 

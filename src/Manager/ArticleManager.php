@@ -19,17 +19,28 @@ class ArticleManager extends AbstractManager
       return $this->getOne('article', Article::class, $id);
     }
 
+
   public function createArticle(){
       return $this->createPost();
     }
 
     protected function createPost()
   {
-    $req = self::$_bdd->prepare("INSERT INTO article (title, chapo, content, creationDate) VALUES (?, ?, ?, NOW())");
+    $req = self::$_bdd->prepare("INSERT INTO article (title, chapo, content, creationDate, idAuthor) VALUES (?, ?, ?, NOW(), 1)");
     $req->execute(array($_POST['title'], $_POST['chapo'], $_POST['content']));
 
     $req->closeCursor();
   }
+
+  public function changePost($postId, $title, $chapo, $content){
+
+    $req = self::$_bdd->prepare("UPDATE article SET title = ?, chapo = ?, content = ? WHERE id = ?");
+
+     $req->execute(array($title, $chapo, $content, $postId));
+
+     return $req;
+
+ } 
 }
 
 

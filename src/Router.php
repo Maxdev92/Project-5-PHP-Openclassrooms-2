@@ -10,8 +10,7 @@ use App\Service\View;
  */
 class Router
 {
-  private $ctrl;
-  private $view;
+  private $_ctrl;
 
   public function routeReq(){
 
