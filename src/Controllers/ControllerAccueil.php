@@ -39,7 +39,7 @@ class ControllerAccueil extends ControllerAbstract
       $headers .= 'Reply-To: '.$expediteur."\n"; // Mail de reponse
       $headers .= 'From: "Nom_de_expediteur"<'.$name.'>'."\n"; // Expediteur
       $headers .= 'Delivered-to: '.$destinataire."\n"; // Destinataire// Copie cachée Bcc        
-      $message = 'Un Bonjour de Developpez.com!'; // message du formulaire
+      $message = 'Merci pour votre message, je vous repondrai au plus vite !'; // message du formulaire
       if (mail($destinataire, $objet, $message, $headers)) // Envoi du message
       {
           $this->addFlash("success", 'Votre message a bien été envoyé ');

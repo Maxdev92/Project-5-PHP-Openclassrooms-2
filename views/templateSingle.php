@@ -72,6 +72,10 @@
 		<p class="alert alert-danger"><?= $_SESSION["error"] ?></p>
 		
 		<?php unset($_SESSION["error"]); endif; ?>
+	<?php if(isset($_SESSION["success"])): ?>
+		<p class="alert alert-success"><?= $_SESSION["success"] ?></p>
+		
+		<?php unset($_SESSION["success"]); endif; ?>
 
   <?= $content ?>
 

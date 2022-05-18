@@ -14,9 +14,6 @@ class Comment extends AbstractModel
   private $_creation_date;
 
   //setters
-  public function getPostId(){
-    return $this->post_id;
-  }
   
   public function setPostId($post_id){
     $this->post_id = $post_id;
@@ -43,6 +40,10 @@ class Comment extends AbstractModel
   public function getContent()
   {
     return $this->_content;
+  }
+
+  public function getPostId(){
+    return $this->post_id;
   }
 
   public function getAuthor()

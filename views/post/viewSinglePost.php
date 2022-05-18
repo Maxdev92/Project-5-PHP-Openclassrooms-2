@@ -19,14 +19,14 @@
                 <a class="avatar" href="#"><img src="public/images/smartphone.jpg" alt="Profile Image"></a>
               </div>
               <div class="middle-area">
-                <h6 class="date">  <?=$article->getCreationDate()?></h6>
+                <h6 class="date">  <?=$article['createdAt']?></h6>
               </div>
 
             </div><!-- post-info -->
 
-            <h3 class="title"><a href="#"><b><?=$article->getTitle()?></b></a></h3>
+            <h3 class="title"><a href="#"><b><?=$article['title']?></b></a></h3>
 
-            <p class="para"><?=$article->getContent()?></p>
+            <p class="para"><?=$article['content']?></p>
 
           </div><!-- blog-post-inner -->
           <div class="post-icons-area">
@@ -34,7 +34,7 @@
               <div class="card-body">
             <ul class="post-icons">
               <li><a href="#"><i class="ion-heart"></i> 57</a></li>
-              <li><a href="#"><i class="ion-chatbubble"></i><?= $countComments[$article->getId()]?></a></li>
+              <li><a href="#"><i class="ion-chatbubble"></i><?= $countComments[$article['id']]?></a></li>
               <li><a href="#"><i class="ion-eye"></i> 138</a></li>
             </ul>
             <ul class="icons">
@@ -43,6 +43,9 @@
               <li><a href="#"><i class="ion-social-twitter"></i> Twitter</a></li>
               <li><a href="#"><i class="ion-social-reddit"></i> Reddit</a></li>
             </ul>
+            <?php if (isset($_SESSION['role']) && $_SESSION['role'] == "admin"):?>	
+              <li><a href="?module=post&action=changePost&id=<?= $article['id']?>">Modifier l'article</a></li>
+              <?php endif ?>
               </div>
             </div><!-- info-area -->
           </div>
@@ -67,7 +70,7 @@
             <form method="post" action="?module=post&action=createCom">
               <div class="row">
                 <!--Input caché servant à récuperer l'ID de l'article-->
-                <input type="hidden" name="id" value="<?= $article->getId() ?>"></input>
+                <input type="hidden" name="id" value="<?= $article['id'] ?>"></input>
                 <div class="col-sm-12">
                   <textarea name="content" rows="2" class="text-area-messge form-control"
                   placeholder="Entrez votre commentaire" aria-required="true" aria-invalid="false"></textarea >

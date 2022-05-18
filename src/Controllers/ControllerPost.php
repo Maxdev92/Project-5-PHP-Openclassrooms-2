@@ -12,6 +12,7 @@ class ControllerPost extends ControllerAbstract
   private $_articleManager;
   private $_commentManager;
   private $_view;
+  
    public function __construct()
    {
     $this->_articleManager = new ArticleManager;
@@ -24,10 +25,11 @@ class ControllerPost extends ControllerAbstract
     $countComments = [];
     foreach($articles as $article){
       $countComments[$article->getId()] = $this->_commentManager->getCountComment($article->getId());
-    }
-    $this->_view = new View('post', 'listPost');
-    $this->_view->generatePost(array('articles' => $articles, 'countComments' => $countComments));
+    
   }
+  $this->_view = new View('post', 'listPost');
+    $this->_view->generatePost(array('articles' => $articles, 'countComments' => $countComments));
+}
   //fonction pour afficher un article
   public function article()
   {
@@ -43,6 +45,38 @@ class ControllerPost extends ControllerAbstract
       throw new Exception("Erreur de chargement des articles et commentaires");
     }
 
+  }
+
+
+  public function changePost()
+  {
+    if ($this->isAdmin()){
+      // on verifie si le formulaire a étré soumit
+      if(isset($_GET['id']) && isset($_POST['title']) && isset($_POST['chapo']) && isset($_POST['content'])){
+        try {
+          $articles = $this->_articleManager->changePost($_GET['id'], $_POST['title'], $_POST['chapo'], $_POST['content']);
+          $articles = $this->_articleManager->getArticles();
+          $this->addFlash('success', 'Article modifié !');
+          $this->_view = new View('accueil','Accueil');
+          $this->_view->generate(array('article' => $articles));
+          
+          }
+          catch (\PDOException $e){
+            throw new Exception("Erreur d'insertion de l'article", 0, $e);
+         }
+      }else{
+        if(isset($_GET['id'])){
+          $article = $this->_articleManager->getArticle($_GET['id']);
+           $this->_view = new View('post','UpdatePost');
+        $this->_view->generateForm(['article'=> $article]);
+        }
+        
+      }
+     
+
+    }else{
+      throw new Exception("Vous n'avez pas l'autorisation pour cette action.");
+    }
   }
 
   public function moderation()
@@ -124,6 +158,7 @@ class ControllerPost extends ControllerAbstract
         $articles = $this->_articleManager->getArticles();
         $this->_view = new View('accueil','Accueil');
         $this->_view->generate(array('article' => $articles));
+        $this->addFlash('success', 'Article envoyé !');
         }
         catch (\PDOException $e){
           throw new Exception("Erreur d'insertion de l'article", 0, $e);
